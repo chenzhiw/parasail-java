@@ -24,6 +24,14 @@ cd build
 cmake .. -DCMAKE_PREFIX_PATH=/your/path/to/parasail/install/prefix
 make
 ```
+### for MinGW
+```bash
+cd parasail-java
+mkdir build
+cd build
+cmake .. -DCMAKE_LIBRARY_PATH="/path/to/parasail/build" -DCMAKE_INCLUDE_PATH="/path/to/parasail" -G "MinGW Makefiles"
+gcc -shared -DMS_WIN64 -DBUILD_DLL -o JNIparasail.dll -I"%JAVA_HOME%/include" -I"%JAVA_HOME%/include/win32" -I/path/to/parasail/include JNIparasail.c /path/to/parasail/library/libparasail_static.a
+```
 
 That should produce the parasail.jar as well as the JNIparasail library, named according to your platform.  For example, libJNIparasail.jnilib on OSX, JNIparasail.dll on Windows, and libJNIparasail.so on Linux.
 
